@@ -1,0 +1,17 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0
+
+WORKDIR /src
+
+COPY ../. .
+
+ENV CONNECTION_STRING=""
+ENV IP_ADDRESS=any
+ENV PORT=5300
+ENV DATA_ENCODING=Json
+ENV CLOUD_EVENT_ENCODING=Binary
+ENV DATA_MODE=Automatic
+ENV DATA_RATE=1
+ENV TENANT_ID=default
+
+WORKDIR /src/vasters.ForzaBridge
+ENTRYPOINT ["sh", "-c", "exec dotnet run -- -c \"$CONNECTION_STRING\""]
